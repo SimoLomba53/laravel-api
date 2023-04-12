@@ -14,8 +14,8 @@ class ProjController extends Controller
      */
     public function index()
     {
-        $projs=Proj::all();
-        return view('admin.proj.index',compact('projs'));
+       $projs=Proj::all();
+        return view('admin.projs.index',compact('projs'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ProjController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projs.create');
     }
 
     /**
@@ -36,7 +36,11 @@ class ProjController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $proj=new Proj;
+        $proj->fill($request->all());
+        $proj->save();
+
+        return to_route('admin.projs.show', $proj);
     }
 
     /**
@@ -47,7 +51,7 @@ class ProjController extends Controller
      */
     public function show(Proj $proj)
     {
-        return view('admin.proj.show',compact('proj'));
+        return view('admin.projs.show',compact('proj'));
     }
 
     /**

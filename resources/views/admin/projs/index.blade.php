@@ -4,6 +4,7 @@
 
 <section class="conteiner">
     @dumb($projs)
+    ciaooo
   
 </section>
 @endsection

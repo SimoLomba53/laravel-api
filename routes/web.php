@@ -24,8 +24,10 @@ Route::middleware('auth')
     ->prefix('/admin')
     ->name('admin.')
     ->group(function(){
-         Route::resource('projs',AdminProjController::class);
+         Route::resource('projs',ProjController::class);
     });
+
+
 
 Route::middleware('auth')
     ->prefix('profile')
