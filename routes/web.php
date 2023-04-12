@@ -21,8 +21,8 @@ Route::get('/', [GuestProjectController::class,'index']);
 Route::get('/home', [AdminProjectController::class,'index'])->middleware(['auth'])->name('home');
 
 Route::middleware('auth')
-    ->prefix('/admin')
-    ->name('admin.')
+    ->prefix('/Admin')
+    ->name('Admin.')
     ->group(function(){
          Route::resource('projs',ProjController::class);
     });
