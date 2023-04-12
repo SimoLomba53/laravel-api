@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     @vite('resources/js/app.js')
 </head>
 <body>
@@ -16,6 +18,7 @@
 
 <section class="conteiner">
 <table class="table">
+    
     <thead>
         <tr>
             <th scope="col">ID</th>
@@ -31,18 +34,14 @@
             <th scope="row">{{ $proj->id }}</th>
             <td>{{ $proj->title }}</td>
             <td>{{ $proj->description }}</td>
-            <td>{{ $proj->image }}</td>
-            <td>
-             <a href="{{ route('admin.projs.show', $proj) }}"> Dettaglio </a>
+            <td><img class="w-25" src="{{ $proj->image }}" alt=""></td>
+            <td class="g-5">
+             <a href="{{ route('admin.projs.show', $proj) }}"><i class="fa-solid fa-circle-info"></i></a>
+             <a href="{{ route('admin.projs.create') }}"><i class="fa-solid fa-circle-plus"></i></a>
+             <a href="{{ route('admin.projs.edit', $proj) }}"><i class="fa-solid fa-pen"></i></a>
             </td>
             <td>
-             <a href="{{ route('admin.projs.create') }}">Crea pasta</a>
-            </td>
-            <td>
-             <a href="{{ route('admin.projs.edit', $proj) }}">Modifica</a>
-            </td>
-            <td>
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal-{{ $proj->id }}">
+              <button type="button" class="btn btn-danger d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#delete-modal-{{ $proj->id }}">
                   Elimina              
                 </button>
             </td>
