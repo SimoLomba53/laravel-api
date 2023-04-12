@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\Validator;
 
 use App\Http\Controllers\Controller;
 use App\Models\Proj;
@@ -8,6 +9,36 @@ use Illuminate\Http\Request;
 
 class ProjController extends Controller
 {
+
+    
+private function validation($data,$id=null) {
+  $unique_title_rule = ($id) ? "|unique:projs,title,$id" : "|unique:projs";
+  $unique_description_rule = ($id) ? "|unique:projs,description,$id" : "|unique:projs";
+  $unique_image_rule = ($id) ? "|unique:projs,image,$id" : "|unique:projs";
+
+  $validator = Validator::make(
+    $data,
+    [
+      'title' => 'required|string|max:50'. $unique_title_rule,
+      'description' => "string|between:1,500".$unique_description_rule,
+      "image" => "string".$unique_image_rule,
+    ],
+    [
+      'title.required' => 'Il title è obbligatorio',
+      'title.string' => 'Il title deve essere una stringa',
+      'title.max' => 'Il title deve essere massimo di 50 caratteri',
+
+      'description.string' => 'La description deve essere una stringa',
+      'description.between' => 'La description deve essere tra 1 e 500 caratteri',
+
+      'image.string' => 'immagine deve essere una stringa',
+      
+    ]
+  )->validate();
+
+  return $validator;
+} 
+
     /**
      * Display a listing of the resource.
      *
@@ -37,6 +68,7 @@ class ProjController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $this->validation($request->all());
         $proj=new Proj;
         $proj->fill($request->all());
         $proj->save();
@@ -75,7 +107,8 @@ class ProjController extends Controller
      */
     public function update(Request $request, Proj $proj)
     {
-        $data = $request->all();
+        $data = $this->validation($request->all(), $proj->id);
+        //$data = $request->all();
         $proj->update($data);
         return redirect()->route('admin.projs.show', $proj);
     }

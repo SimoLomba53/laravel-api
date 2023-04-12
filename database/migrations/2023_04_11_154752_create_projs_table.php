@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('projs', function (Blueprint $table) {
             $table->id();
-            $table->string('title',50);
-            $table->string('description',100);
-            $table->string('image')->nullable();
-            $table->timestamps();
+            $table->string('title',50)->nullable()->default(null);
+            $table->string('description',100)->nullable()->default(null);
+            $table->string('image')->nullable()->default(null);
+            
         });
     }
 
