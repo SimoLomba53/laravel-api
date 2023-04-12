@@ -35,6 +35,9 @@
             <td>
                 <a href="{{ route('admin.projs.show', $proj) }}"> Dettaglio </a>
             </td>
+            <td>
+            <a href="{{ route('admin.projs.create') }}">Crea pasta</a>
+            </td>
         </tr>
         @endforeach
     </tbody>
