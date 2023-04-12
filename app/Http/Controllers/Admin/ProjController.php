@@ -63,7 +63,7 @@ class ProjController extends Controller
      */
     public function edit(Proj $proj)
     {
-        //
+        return view('admin.projs.edit', compact('proj'));
     }
 
     /**
@@ -75,7 +75,9 @@ class ProjController extends Controller
      */
     public function update(Request $request, Proj $proj)
     {
-        //
+        $data = $request->all();
+        $proj->update($data);
+        return redirect()->route('admin.projs.show', $proj);
     }
 
     /**
@@ -86,6 +88,7 @@ class ProjController extends Controller
      */
     public function destroy(Proj $proj)
     {
-        //
+         $proj->delete();
+         return redirect()->route('admin.projs.index');
     }
 }

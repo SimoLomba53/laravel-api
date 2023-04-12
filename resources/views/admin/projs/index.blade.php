@@ -33,11 +33,44 @@
             <td>{{ $proj->description }}</td>
             <td>{{ $proj->image }}</td>
             <td>
-                <a href="{{ route('admin.projs.show', $proj) }}"> Dettaglio </a>
+             <a href="{{ route('admin.projs.show', $proj) }}"> Dettaglio </a>
             </td>
             <td>
-            <a href="{{ route('admin.projs.create') }}">Crea pasta</a>
+             <a href="{{ route('admin.projs.create') }}">Crea pasta</a>
             </td>
+            <td>
+             <a href="{{ route('admin.projs.edit', $proj) }}">Modifica</a>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal-{{ $proj->id }}">
+                  Elimina              
+                </button>
+            </td>
+            <div class="modal fade" id="delete-modal-{{ $proj->id }}" tabindex="-1" aria-labelledby="delete-modal-{{ $proj->id }}-label"
+              aria-hidden="true">
+             <div class="modal-dialog">
+              <div class="modal-content">
+               <div class="modal-header">
+                 <h1 class="modal-title fs-5" id="delete-modal-{{ $proj->id }}-label">Conferma eliminazione</h1>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body text-start">
+                Sei sicuro di voler eliminare il progetto {{ $proj->title }} con ID
+               {{ $proj->id }}? <br>
+                 L'operazione non è reversibile
+                </div>
+               <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+
+              <form action="{{ route('admin.projs.destroy', $proj) }}" method="POST" class="">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-danger">Elimina</button>
+              </form>
+             </div>
+            </div>
+           </div>
+          </div> 
         </tr>
         @endforeach
     </tbody>
