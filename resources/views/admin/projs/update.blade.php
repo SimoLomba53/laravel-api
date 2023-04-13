@@ -1,5 +1,5 @@
 
-<form action="{{ route('admin.projs.update') }}" method="POST">
+<form action="{{ route('admin.projs.update') }}" method="POST"  enctype="multipart/form-data">
     @method('PUT') @csrf
 
     <label for="title" class="form-label">Title</label>
@@ -22,7 +22,7 @@
 
     <label for="image" class="form-label">Image</label>
     <input
-        type="text"
+        type="file"
         class="form-control"
         id="image"
         name="image"

@@ -1,18 +1,20 @@
-@if ($errors->any())
-  <div class="alert alert-danger">
-    <h4>Correggi i seguenti errori per proseguire: </h4>
-    <ul>
-      @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-    </ul>
-  </div>
-@endif
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  @vite('resources/js/app.js')
+</head>
+<body>
+  
+
 
 <h1 class="text-center">MODIFICA PROGETTO</h1>
-@vite('resources/js/app.js')
 
-<form action="{{route('admin.projs.update',$proj)}}" method="POST">
+<form action="{{route('admin.projs.update',$proj)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 <div class="col-6 offset-3">
@@ -36,7 +38,7 @@
  </div>
  <div>
     <label for="image" class="form-label">Image</label>
-    <input type="text" class="form-control  @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image') ?? $proj->image}}">
+    <input type="file" class="form-control  @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image') ?? $proj->image}}">
     @error('image')
     <div class="invalid-feedback">
       {{$message}}
@@ -47,4 +49,17 @@
     <button type="submit" class="btn btn-primary">Salva</button>
  </div>
 </div>
+
+@if ($errors->any())
+  <div class="alert alert-danger">
+    <h4>Correggi i seguenti errori per proseguire: </h4>
+    <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
 </form>
+</body>
+</html>

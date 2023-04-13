@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Models\Proj;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class ProjController extends Controller
 {
@@ -21,7 +23,7 @@ private function validation($data) {
     [
       'title' => 'required|string|max:50', //$unique_title_rule,
       'description' => 'required|string|max:200',//$unique_description_rule,
-      'image' => 'nullable|string',//$unique_image_rule,
+      'image' => 'nullable|image|mimes:jpg,png,jpeg',//$unique_image_rule,
     ],
     [
       'title.required' => 'Il title è obbligatorio',
@@ -32,7 +34,8 @@ private function validation($data) {
       'description.string' => 'La description deve essere una stringa',
       'description.max' => 'La description deve essere massimo di 200 caratteri',
 
-      'image.string' => 'immagine deve essere una stringa',
+      'image.image' => 'Il file deve essere un immagine',
+      'image.mimes' =>'il file deve essere di tipo jpg,png o jpeg',
       
     ]
   )->validate();
@@ -68,10 +71,15 @@ private function validation($data) {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {    
+        $data=$request->all();
+         
+        if(Arr::exists($data,'image')){
+          Storage::put('uploads/projs',$data['image']);}
+
         $data = $this->validation($request->all());
         $proj=new Proj;
-        $proj->fill($request->all());
+        $proj->fill($data);
         $proj->save();
 
         return to_route('admin.projs.show', $proj);

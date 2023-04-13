@@ -16,7 +16,7 @@
 
 @section('content')
 <section class="conteiner p-5">
-   <form action="{{ route('admin.projs.store') }}" method="POST">
+   <form action="{{ route('admin.projs.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 <table class="table">
     <label for="title" class="form-label">Title</label>
@@ -28,7 +28,7 @@
     
 
     <label for="image" class="form-label">Image</label>
-    <input type="text" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image') }}"  />
+    <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image') }}"  />
     
 
     <button type="submit" class="btn btn-primary mt-3 text-center">Salva</button>
