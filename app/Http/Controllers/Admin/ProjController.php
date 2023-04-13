@@ -76,9 +76,11 @@ private function validation($data) {
         $data=$request->all();
          
         if(Arr::exists($data,'image')){
-          $path=Storage::put('uploads/projs',$data['image']);}
-         
+          $path=Storage::put('uploads/projs',$data['image']);
           $path=Storage::disk('public')->put('uploads',$data['image']);
+          $data['image']=$path;}
+
+       
         
 
         $data = $this->validation($request->all());
