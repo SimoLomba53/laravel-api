@@ -109,9 +109,10 @@ private function validation($data) {
     public function update(Request $request, Proj $proj)
     {
         $data = $this->validation($request->all(), $proj->id);
-        //$data = $request->all();
+        $data = $request->all();
         $proj->update($data);
         return redirect()->route('admin.projs.show', $proj);
+       
     }
 
     /**
