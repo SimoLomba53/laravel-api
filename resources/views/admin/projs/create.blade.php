@@ -23,12 +23,12 @@
     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}"  />
    
 
-    <label for="Description" class="form-label">Description</label>
-    <input type="text" class="form-control @error('description') is-invalid @enderror" id="Description" name="Description" value="{{ old('description') }}" />
+    <label for="description" class="form-label">Description</label>
+    <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" value="{{ old('description') }}" />
     
 
-    <label for="Image" class="form-label">Image</label>
-    <input type="text" class="form-control @error('image') is-invalid @enderror" id="Image" name="Image" value="{{ old('image') }}"  />
+    <label for="image" class="form-label">Image</label>
+    <input type="text" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image') }}"  />
     
 
     <button type="submit" class="btn btn-primary mt-3 text-center">Salva</button>

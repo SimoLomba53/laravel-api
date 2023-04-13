@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('projs', function (Blueprint $table) {
             $table->id();
             $table->string('title',50)->nullable()->default(null);
-            $table->string('description',100)->nullable()->default(null);
+            $table->string('description',200)->nullable()->default(null);
             $table->string('image')->nullable()->default(null);
             
         });

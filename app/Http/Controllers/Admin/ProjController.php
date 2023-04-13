@@ -11,25 +11,26 @@ class ProjController extends Controller
 {
 
     
-private function validation($data,$id=null) {
-  $unique_title_rule = ($id) ? "|unique:projs,title,$id" : "|unique:projs";
-  $unique_description_rule = ($id) ? "|unique:projs,description,$id" : "|unique:projs";
-  $unique_image_rule = ($id) ? "|unique:projs,image,$id" : "|unique:projs";
+private function validation($data) {
+  //$unique_title_rule = ($id) ? "|unique:projs,title,$id" : "|unique:projs";
+  //$unique_description_rule = ($id) ? "|unique:projs,description,$id" : "|unique:projs";
+  //$unique_image_rule = ($id) ? "|unique:projs,image,$id" : "|unique:projs";
 
   $validator = Validator::make(
     $data,
     [
-      'title' => 'required|string|max:50'. $unique_title_rule,
-      'description' => "string|between:1,500".$unique_description_rule,
-      "image" => "string".$unique_image_rule,
+      'title' => 'required|string|max:50', //$unique_title_rule,
+      'description' => 'required|string|max:200',//$unique_description_rule,
+      'image' => 'nullable|string',//$unique_image_rule,
     ],
     [
       'title.required' => 'Il title è obbligatorio',
       'title.string' => 'Il title deve essere una stringa',
       'title.max' => 'Il title deve essere massimo di 50 caratteri',
 
+      'description.required' => 'La description è obbligatoria',
       'description.string' => 'La description deve essere una stringa',
-      'description.between' => 'La description deve essere tra 1 e 500 caratteri',
+      'description.max' => 'La description deve essere massimo di 200 caratteri',
 
       'image.string' => 'immagine deve essere una stringa',
       
@@ -37,7 +38,7 @@ private function validation($data,$id=null) {
   )->validate();
 
   return $validator;
-} 
+}
 
     /**
      * Display a listing of the resource.
