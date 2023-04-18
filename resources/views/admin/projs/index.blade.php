@@ -16,8 +16,10 @@
 
 @section('content')
 
-<section class="conteiner">
-<table class="table">
+<div class="wallpaper">
+
+<section class="conteiner p-5">
+<table class="table bg-white">
     
     <thead>
         <tr>
@@ -78,6 +80,8 @@
 </table>
   
 </section>
+
+</div>
 @endsection
 </body>
 </html>

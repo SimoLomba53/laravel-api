@@ -3,3 +3,22 @@
 thead {
     border-width: 1px;
 }
+
+.wallpaper {
+    background-image: url(https://cdn.shopify.com/s/files/1/0285/1316/products/m1906_1s_White-Washed-Brick-Wall-Mural-WallsNeedLove_For-Living-Rooms-2-NEW.jpg?v=1624988616);
+    background-repeat: repeat;
+}
+
+.homepaper {
+    background-image: url(https://cdn.shopify.com/s/files/1/0285/1316/products/m1906_1s_White-Washed-Brick-Wall-Mural-WallsNeedLove_For-Living-Rooms-2-NEW.jpg?v=1624988616);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hometext {
+    color: #fff;
+    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #beb1aa,
+        0 0 82px #beb1aa, 0 0 92px #beb1aa, 0 0 102px #beb1aa, 0 0 151px #beb1aa;
+
+    font-size: 50px;
+}
