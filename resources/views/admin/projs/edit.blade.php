@@ -36,6 +36,21 @@
     </div>
     @enderror
  </div>
+  <div>
+    <label for="type_id" class="form-label">Type</label>
+     <select name="type_id" id="type_id" class="form-select @error('type_id') is invalid @enderror">
+     <option value="">NO TYPE</option>
+     @foreach($types as $type){
+      <option @if (old('type_id',$proj->type_id) == $type->id) selected @endif value="{{$type->id}}">{{$type->label}}</option>
+     }
+     @endforeach
+    </select>
+    @error('type_id')
+    <div class="invalid-feedback">
+      {{$message}}
+    </div>
+    @enderror
+ </div>
  <div>
     <label for="image" class="form-label">Image</label>
     <input type="file" class="form-control  @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image') ?? $proj->image}}">
