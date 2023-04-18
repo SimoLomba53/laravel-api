@@ -11,7 +11,7 @@ class Proj extends Model
 {
     use HasFactory;
 
-    protected $fillable=["title","description","image"];
+    protected $fillable=["type_id","title","description","image"];
     public $timestamps = false;
 
     // RELATIONS

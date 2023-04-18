@@ -23,10 +23,10 @@
     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}"  />
     
      <label for="type_id" class="form-label">Type</label>
-    <select name="type_id" id="type_id" class="form-select">
+    <select name="type_id" id="type_id" class="form-select @error('type_id') is invalid @enderror">
      <option value="">NO TYPE</option>
      @foreach($types as $type){
-      <option value="{{$type->id}}">{{$type->label}}</option>
+      <option @if (old('type_id',$proj->type_id) == $type->id) selected @endif value="{{$type->id}}">{{$type->label}}</option>
      }
      @endforeach
     </select>

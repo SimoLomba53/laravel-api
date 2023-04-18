@@ -25,6 +25,7 @@ private function validation($data) {
       'title' => 'required|string|max:50', //$unique_title_rule,
       'description' => 'required|string|max:200',//$unique_description_rule,
       'image' => 'nullable|image|mimes:jpg,png,jpeg',//$unique_image_rule,
+      'type_id' => 'nullable|exists:types,id'
     ],
     [
       'title.required' => 'Il title è obbligatorio',
@@ -37,6 +38,11 @@ private function validation($data) {
 
       'image.image' => 'Il file deve essere un immagine',
       'image.mimes' =>'il file deve essere di tipo jpg,png o jpeg',
+
+      'type_id.exists' => 'L\ id della categoria non è valido',
+
+
+
       
     ]
   )->validate();
