@@ -14,6 +14,12 @@ class Proj extends Model
     protected $fillable=["title","description","image"];
     public $timestamps = false;
 
+    // RELATIONS
+
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
+
     //public function user(){
         //return $this->belongsTo(User::class);
     //}
