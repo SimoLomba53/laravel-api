@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Models\Proj;
 use App\Models\Type;
+use App\Models\Technology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -70,7 +71,8 @@ private function validation($data) {
     {   
         $proj=new Proj;
         $types=Type::all();
-        return view('admin.projs.create',compact('proj','types'));
+        $technologies=Technology::all();
+        return view('admin.projs.create',compact('proj','types','technologies'));
     }
 
     /**
@@ -120,7 +122,8 @@ private function validation($data) {
     public function edit(Proj $proj)
     {
         $types=Type::all();
-        return view('admin.projs.edit', compact('proj','types'));
+        $technologies=Technology::all();
+        return view('admin.projs.edit', compact('proj','types','technologies'));
     }
 
     /**

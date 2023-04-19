@@ -22,7 +22,7 @@
     <label for="title" class="form-label">Title</label>
     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}"  />
     
-     <label for="type_id" class="form-label">Type</label>
+    <label for="type_id" class="form-label">Type</label>
     <select name="type_id" id="type_id" class="form-select @error('type_id') is invalid @enderror">
      <option value="">NO TYPE</option>
      @foreach($types as $type){
@@ -30,6 +30,16 @@
      }
      @endforeach
     </select>
+    
+    <div>
+    <label for="type_id" class="form-label">Technologies</label>
+    @foreach($technologies as $technology){
+       <input type="checkbox" id="technology-{{$technology->id}}">
+       <label for="technology-{{$technology->id}}"> {{ $technology->label }} </label> 
+       <br>
+    }
+    @endforeach
+    </div>
    
 
     <label for="description" class="form-label">Description</label>
