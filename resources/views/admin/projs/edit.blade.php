@@ -51,6 +51,17 @@
     </div>
     @enderror
  </div>
+
+<div>
+    <label for="type_id" class="form-label">Technologies</label>
+    @foreach($technologies as $technology){
+       <input type="checkbox" id="technology-{{$technology->id}}" value="{{$technology->id}}" name="technologies[]" class="form-check-control"  @if(in_array($technology->id, $proj_technologies)) checked @endif>
+       <label for="technology-{{$technology->id}}"> {{ $technology->label }} </label> 
+       <br>
+    }
+    @endforeach
+</div>
+
  <div>
     <label for="image" class="form-label">Image</label>
     <input type="file" class="form-control  @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image') ?? $proj->image}}">
