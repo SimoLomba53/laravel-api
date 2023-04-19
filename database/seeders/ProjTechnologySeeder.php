@@ -21,7 +21,7 @@ class ProjTechnologySeeder extends Seeder
         
         $technologies=Technology::all()->pluck('id');
 
-        for($i=1;$i < 40;$i++){
+        for($i=1;$i < 20;$i++){
             $proj=Proj::find($i);
             $proj->technologies()->attach($faker->randomElements($technologies, 3));
         }
