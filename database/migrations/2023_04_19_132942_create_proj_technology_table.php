@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('projs_technologies', function (Blueprint $table) {
+        Schema::create('proj_technology', function (Blueprint $table) {
             $table->id();
             
             $table->foreignId('proj_id')
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projs_technologies');
+        Schema::dropIfExists('proj_technology');
     }
 };
