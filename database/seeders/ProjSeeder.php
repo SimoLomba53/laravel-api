@@ -18,6 +18,7 @@ class ProjSeeder extends Seeder
     {
 
         $types=Type::all()->pluck('id');
+        $types[]=null;
 
         for ($i=0;$i < 20;$i++){
             $proj=new Proj;
