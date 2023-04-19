@@ -26,7 +26,8 @@ private function validation($data) {
       'title' => 'required|string|max:50', //$unique_title_rule,
       'description' => 'required|string|max:200',//$unique_description_rule,
       'image' => 'nullable|image|mimes:jpg,png,jpeg',//$unique_image_rule,
-      'type_id' => 'nullable|exists:types,id'
+      'type_id' => 'nullable|exists:types,id',
+      'technologies' => 'nullable|exists:technologies,id'
     ],
     [
       'title.required' => 'Il title è obbligatorio',
@@ -41,6 +42,7 @@ private function validation($data) {
       'image.mimes' =>'il file deve essere di tipo jpg,png o jpeg',
 
       'type_id.exists' => 'L\ id della categoria non è valido',
+      'technologies.exists' => 'Le technologies non sono valide',
 
 
 
@@ -72,7 +74,8 @@ private function validation($data) {
         $proj=new Proj;
         $types=Type::all();
         $technologies=Technology::all();
-        return view('admin.projs.create',compact('proj','types','technologies'));
+        $proj_technologies=$proj->technologies->pluck('id')->toArray();
+        return view('admin.projs.create',compact('proj','types','technologies','proj_technologies'));
     }
 
     /**
@@ -123,7 +126,8 @@ private function validation($data) {
     {
         $types=Type::all();
         $technologies=Technology::all();
-        return view('admin.projs.edit', compact('proj','types','technologies'));
+        $proj_technologies=$proj->technologies->pluck('id')->toArray();
+        return view('admin.projs.edit', compact('proj','types','technologies','proj_technologies'));
     }
 
     /**
@@ -138,6 +142,10 @@ private function validation($data) {
         $data = $this->validation($request->all(), $proj->id);
         $data = $request->all();
         $proj->update($data);
+        if(Arr::exists($data,"technologies"))$proj->technologies()->sync($data["technologies"]);
+        else 
+        $proj->technologies()->detach();
+
         return redirect()->route('admin.projs.show', $proj);
        
     }
