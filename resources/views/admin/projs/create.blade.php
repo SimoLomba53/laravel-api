@@ -31,16 +31,33 @@
      @endforeach
     </select>
     
-    <div>
-    <label for="type_id" class="form-label">Technologies</label>
-    @foreach($technologies as $technology){
-       <input type="checkbox" id="technology-{{$technology->id}}" value="{{$technology->id}}" name="technologies[]" class="form-check-control"  @if(in_array($technology->id, $proj_technologies)) checked @endif>
-       <label for="technology-{{$technology->id}}"> {{ $technology->label }} </label> 
-       <br>
-    }
-    @endforeach
-    </div>
-   
+    
+ <label class="form-label">Technologies</label>
+
+<div class="form-check @error('technologies') is-invalid @enderror p-0">
+  @foreach ($technologies as $technology)
+    <input
+      type="checkbox"
+      id="technology-{{ $technology->id }}"
+      value="{{ $technology->id }}"
+      name="technologies[]"
+      class="form-check-control"
+      @if (in_array($technology->id, old('technologies', $proj_technologies ?? []))) checked @endif
+    >
+    <label for="technology-{{ $technology->id }}">
+      {{ $technology->label }}
+    </label>
+    <br>
+  @endforeach
+</div>
+
+ @error('technologies')
+  <div class="invalid-feedback">
+    {{ $message }}
+  </div>
+ @enderror
+
+
 
     <label for="description" class="form-label">Description</label>
     <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" value="{{ old('description') }}" />

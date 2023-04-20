@@ -74,7 +74,7 @@ private function validation($data) {
     {   
         $proj=new Proj;
         $types=Type::all();
-        $technologies=Technology::all();
+        $technologies=Technology::orderBy('label')->get();
         $proj_technologies=$proj->technologies->pluck('id')->toArray();
         return view('admin.projs.create',compact('proj','types','technologies','proj_technologies'));
     }
@@ -102,6 +102,8 @@ private function validation($data) {
         $proj=new Proj;
         $proj->fill($data);
         $proj->save();
+
+        if(Arr::exists($data, "technologies")) $proj->technologies()->attach($data["technologies"]);
 
         return to_route('admin.projs.show', $proj);
     }
