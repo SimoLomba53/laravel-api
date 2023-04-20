@@ -48,7 +48,7 @@
             </td>
             
             <td>{{ $proj->description }}</td>
-            <td><img class="w-25" src="{{ asset(  $proj->image) }}" alt=""></td>
+            <td><img class="" src="{{ asset('storage/uploads/' .$proj->image) }}" width="100px" height="100px" alt=""></td>
             <td class="g-5">
              <a href="{{ route('admin.projs.show', $proj) }}"><i class="fa-solid fa-circle-info"></i></a>
              <a href="{{ route('admin.projs.create') }}"><i class="fa-solid fa-circle-plus"></i></a>

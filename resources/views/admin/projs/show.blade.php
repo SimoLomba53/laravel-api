@@ -12,7 +12,9 @@
      Nessun tag associato
      @endforelse 
      <br />
+     
     <strong>Description:</strong> {{ $proj->description }} <br />
-    <strong>Image</strong><img src="{{$proj->image}}" width="120px" height="120px" alt=""> <br />
+    <strong>Image</strong> <img src="{{ asset('storage/uploads/'.$proj->image) }}" width="100px" height="100px" alt="">
+    <br/>
 </section>
 @endsection
