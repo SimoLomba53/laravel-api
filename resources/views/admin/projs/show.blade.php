@@ -14,7 +14,7 @@
      <br />
      
     <strong>Description:</strong> {{ $proj->description }} <br />
-    <strong>Image</strong> <img src="{{ asset('storage/uploads/'.$proj->image) }}" width="100px" height="100px" alt="">
+    <strong>Image</strong> <img src="{{ asset('storage/'.$proj->image) }}" width="100px" height="100px" alt="">
     <br/>
 </section>
 @endsection

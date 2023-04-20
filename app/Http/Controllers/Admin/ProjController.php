@@ -10,6 +10,7 @@ use App\Models\Technology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class ProjController extends Controller
 {
@@ -143,11 +144,19 @@ private function validation($data) {
     public function update(Request $request, Proj $proj)
     {
         $data = $this->validation($request->all(), $proj->id);
+        //SALVO IMG SU DISK QUINDI SUL MIO PC
+        //$PATH contiene l'effettivo percorso di salvataggio dell'immagine sulla cartella con nome corretto
+        $path = Storage::disk('public')->put('images', $request->image);
         $data = $request->all();
+        //serve per salvare su database il giusto percorso dell'img salvata
+        $data["image"]=$path;
         $proj->update($data);
         if(Arr::exists($data,"technologies"))$proj->technologies()->sync($data["technologies"]);
         else 
         $proj->technologies()->detach();
+       
+        Log::debug($path);
+        
 
         return redirect()->route('admin.projs.show', $proj);
        
