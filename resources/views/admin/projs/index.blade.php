@@ -20,7 +20,7 @@
 
 <section class="conteiner p-5">
 <table class="table bg-white">
-    
+   
     <thead>
         <tr>
             <th scope="col">ID</th>
@@ -38,7 +38,15 @@
             <th scope="row">{{ $proj->id }}</th>
             <td>{{ $proj->title }}</td>
             <td>{{ $proj->type?->label }}</td>
-            <td>{{ $proj->technology->label }}</td>
+            
+            <td>
+              @forelse($proj->technologies as $technology)
+              {{ $technology->label }} @unless($loop->last) , @else  @endunless
+              @empty
+              -
+              @endforelse
+            </td>
+            
             <td>{{ $proj->description }}</td>
             <td><img class="w-25" src="{{ asset(  $proj->image) }}" alt=""></td>
             <td class="g-5">

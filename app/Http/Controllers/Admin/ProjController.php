@@ -61,7 +61,8 @@ private function validation($data) {
     public function index()
     {
        $projs=Proj::all();
-        return view('admin.projs.index',compact('projs'));
+       $technologies=Technology::all();
+        return view('admin.projs.index',compact('projs','technologies'));
     }
 
     /**
