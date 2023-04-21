@@ -15,4 +15,4 @@ use App\Http\Controllers\Api\ProjectController;
 |
 */
 
-Route::resource('projs',ProjectController::class);
+Route::apiResource('projs',ProjectController::class);
