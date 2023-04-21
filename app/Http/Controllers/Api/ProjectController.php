@@ -15,8 +15,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projs=Proj::where('is_published',true)->orderBy('updated_at','DESC')->get();
-        return response()->json();
+        $projs=Proj::all();
+        return response()->json($projs);
     }
 
     /**
