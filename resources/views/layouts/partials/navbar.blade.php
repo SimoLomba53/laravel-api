@@ -17,7 +17,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                     <!-- Left Side Of Navbar -->
                     @auth
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
