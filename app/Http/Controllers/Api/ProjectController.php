@@ -15,8 +15,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projs=Proj::all()
-        ->with('type','technology');
+        $projs=Proj::all();
+        //->with('type','technology');
         return response()->json($projs);
     }
 
@@ -39,7 +39,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $proj=Proj::where('id', $id)->with('type','technology')->first();
+        $proj=Proj::where('id', $id)->first();
         if(!$proj) return response(null,404);
 
         return response()->json($proj);
