@@ -109,7 +109,7 @@ private function validation($data) {
 
         if(Arr::exists($data, "technologies")) $proj->technologies()->attach($data["technologies"]);
 
-        $mail=new PublishedProjMail();
+        $mail=new PublishedProjMail($proj);
 
         $user_email=Auth::user()->email;
 
@@ -160,6 +160,8 @@ private function validation($data) {
         //serve per salvare su database il giusto percorso dell'img salvata
         $data["image"]=$path;
         $proj->update($data);
+
+
         if(Arr::exists($data,"technologies"))$proj->technologies()->sync($data["technologies"]);
         else 
         $proj->technologies()->detach();
