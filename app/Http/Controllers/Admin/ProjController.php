@@ -7,10 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Proj;
 use App\Models\Type;
 use App\Models\Technology;
+use App\Mail\PublishedProjMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ProjController extends Controller
 {
@@ -105,6 +108,12 @@ private function validation($data) {
         $proj->save();
 
         if(Arr::exists($data, "technologies")) $proj->technologies()->attach($data["technologies"]);
+
+        $mail=new PublishedProjMail();
+
+        $user_email=Auth::user()->email;
+
+        Mail::to($user_email)->send($mail);
 
         return to_route('admin.projs.show', $proj);
     }
